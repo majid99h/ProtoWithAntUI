@@ -1,0 +1,284 @@
+<div nz-row>
+  <div nz-col nzSpan="6">
+    <nz-divider nzText="Plate Info"></nz-divider>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">Plate Text</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <input nz-input placeholder="plate text" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">Plate Country</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Country">
+          <nz-option nzLabel="Qatar" nzValue="Qatar"></nz-option>
+          <nz-option nzLabel="KSA" nzValue="KSA"></nz-option>
+          <nz-option nzLabel="UAE" nzValue="UAE"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">Plate Type</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Type">
+          <nz-option nzLabel="Private" nzValue="Private"></nz-option>
+          <nz-option nzLabel="Public" nzValue="Public"></nz-option>
+          <nz-option nzLabel="Transport" nzValue="Transport"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">Plate Status</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Status">
+          <nz-option nzLabel="Both" nzValue="Qatar"></nz-option>
+          <nz-option nzLabel="Recognize" nzValue="Recognize"></nz-option>
+          <nz-option nzLabel="UnRec" nzValue="UnRecognize"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+  <div nz-col nzSpan="6">
+    <nz-divider nzText="Device"></nz-divider>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">CheckPoint</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-select
+          [nzMaxTagCount]="3"
+          [nzMaxTagPlaceholder]="tagPlaceHolder"
+          nzMode="multiple"
+          nzPlaceHolder="select Location"
+        >
+          <nz-option
+            *ngFor="let item of listOfOption"
+            [nzLabel]="item"
+            [nzValue]="item"
+          ></nz-option>
+        </nz-select>
+        <ng-template #tagPlaceHolder let-selectedList
+          >and {{ selectedList.length }} more selected</ng-template
+        >
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">Camera</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-select
+          [nzMaxTagCount]="3"
+          [nzMaxTagPlaceholder]="tagPlaceHolder"
+          nzMode="multiple"
+          nzPlaceHolder="select Camera"
+        >
+          <nz-option
+            *ngFor="let item of listOfCOption"
+            [nzLabel]="item"
+            [nzValue]="item"
+          ></nz-option>
+        </nz-select>
+        <ng-template #tagPlaceHolder let-selectedList
+          >and {{ selectedList.length }} more selected</ng-template
+        >
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">Camera Status</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Status">
+          <nz-option nzLabel="Both" nzValue="Both"></nz-option>
+          <nz-option nzLabel="Online" nzValue="Online"></nz-option>
+          <nz-option nzLabel="Offline" nzValue="Offline"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+  <div nz-col nzSpan="6">
+    <nz-divider nzText="Date/Time & Creteria Section"></nz-divider>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">Date & Time</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-range-picker
+          [nzRanges]="ranges"
+          nzShowTime
+          nzFormat="yyyy/MM/dd HH:mm:ss"
+          ngModel
+          (ngModelChange)="onChange($event)"
+        ></nz-range-picker>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+  <div nz-col nzSpan="6">
+    <nz-divider nzText="Watch List"></nz-divider>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="6">Watch List</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <nz-tree-select
+        style="width: 250px"
+        [(ngModel)]="value"
+        [nzNodes]="nodes"
+        (ngModelChange)="onChange($event)"
+        nzShowSearch
+        nzCheckable
+        nzPlaceHolder="Please select"
+      ></nz-tree-select>
+        </nz-form-control>
+      </nz-form-item>
+  </div>
+</div>
+<nz-divider nzText="Simple Search"></nz-divider>
+<div nz-row>
+  <div nz-col nzSpan="22">
+    <div>
+      <nz-input-group [nzAddOnAfter]="addOnAfterTemplate">
+        <input type="text" nz-input />
+      </nz-input-group>
+
+      <ng-template #addOnAfterTemplate>
+        <nz-select [ngModel]="'Plate No'">
+          <nz-option nzLabel="Plate Type" nzValue="Plate Type"></nz-option>
+          <nz-option nzLabel="Country" nzValue="Country"></nz-option>
+          <nz-option nzLabel="Owner Name" nzValue="Owner Name"></nz-option>
+          <nz-option nzLabel="Plate Model" nzValue="Plate Model"></nz-option>
+          <nz-option nzLabel="Plate No" nzValue="Plate No"></nz-option>
+        </nz-select>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<nz-divider nzText="Search Result"></nz-divider>
+<div nz-row>
+  <div nz-col nzSpan="22">
+    <button
+      nz-button
+      nzType="primary"
+      nzSize="small"
+      (click)="showModal()"
+      style="margin-bottom: 8px"
+    >
+      <span nz-icon nzType="setting" nzTheme="outline"></span>
+    </button>
+    <nz-table #basicTable [nzData]="listOfData" [nzCustomColumn]="customColumn">
+      <thead>
+        <tr>
+          <th nzCellControl="PlateNumber">Plate Number</th>
+          <th nzCellControl="Date">Date</th>
+          <th nzCellControl="Country">Country</th>
+          <th nzCellControl="Camera">Camera</th>
+          <th nzCellControl="Location">Location</th>
+          <th nzCellControl="action">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td nzCellControl="PlateNumber">{{ data.PlateNumber }}</td>
+          <td nzCellControl="Date">{{ data.Date | date : "fullDate" }}</td>
+          <td nzCellControl="Country">{{ data.Country }}</td>
+          <td nzCellControl="Camera">{{ data.Camera }}</td>
+          <td nzCellControl="Location">{{ data.Location }}</td>
+          <td nzCellControl="action">
+            <button nz-button nz-dropdown [nzDropdownMenu]="menu">
+              Actions
+              <span nz-icon nzType="down"></span>
+            </button>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu>
+                <li nz-menu-item>
+                  <a>Detail</a>
+                </li>
+                <li nz-menu-item>
+                  <a>Mark Alert</a>
+                </li>
+                <li nz-menu-item>
+                  <a>Create Alert</a>
+                </li>
+              </ul>
+            </nz-dropdown-menu>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a>Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+
+    <nz-modal
+      [(nzVisible)]="isVisible"
+      nzTitle="Custom Column"
+      (nzOnCancel)="handleCancel()"
+      (nzOnOk)="handleOk()"
+    >
+      <ng-container *nzModalContent>
+        <div nz-row [nzGutter]="24">
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <div class="example-container">
+              <p>Displayed (drag and drop to sort)</p>
+              <div class="example-box" *ngFor="let item of title">
+                {{ item.name }}
+              </div>
+              <div
+                cdkDropList
+                #todoList="cdkDropList"
+                [cdkDropListData]="fix"
+                [cdkDropListConnectedTo]="[doneList]"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)"
+              >
+                <div
+                  class="example-box"
+                  *ngFor="let item of fix; let i = index"
+                  cdkDrag
+                >
+                  {{ item.name }}
+                  <span
+                    nz-icon
+                    nzType="minus-circle"
+                    nzTheme="outline"
+                    (click)="deleteCustom(item, i)"
+                  ></span>
+                </div>
+              </div>
+              <div class="example-box" *ngFor="let item of footer">
+                {{ item.name }}
+              </div>
+            </div>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <div class="example-container">
+              <p>Not Shown</p>
+              <div
+                cdkDropList
+                #doneList="cdkDropList"
+                [cdkDropListData]="notFix"
+                [cdkDropListConnectedTo]="[todoList]"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)"
+              >
+                <div
+                  class="example-box"
+                  *ngFor="let item of notFix; let i = index"
+                  cdkDrag
+                >
+                  {{ item.name }}
+                  <span
+                    nz-icon
+                    nzType="plus-circle"
+                    nzTheme="outline"
+                    (click)="addCustom(item, i)"
+                  ></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </nz-modal>
+  </div>
+</div>
+
+<nz-divider nzText="Master Setup 1"></nz-divider>
+<div nz-row>
+  <div nz-col nzSpan="22">
+    <app-master-setup></app-master-setup>
+    <nz-divider nzText="Master Setup 2"></nz-divider>
+
+    <app-master-setup1></app-master-setup1>
+  </div>
+</div>
