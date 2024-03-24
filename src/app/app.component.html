@@ -1,37 +1,72 @@
-
-<nz-layout>
-  <nz-sider nzCollapsible nzWidth="200px">
-    <div class="logo"></div>
-    <ul nz-menu nzTheme="dark" nzMode="inline">
+<nz-header nz-layout="horizontal" style="background: #fff; padding: 0">
+  <div nz-row>
+    <div nz-col nzSpan="18">
+      <!-- Logo -->
+      <img
+        src="../assets/logo/logo.png"
+        alt="Logo"
+        style="height: 65px; width: auto;padding: 5px;"
+      />
+    </div>
+    <div nz-col nzSpan="6">
+      <div style="padding-right: 10px;display: flex; justify-content: end; align-items: center;">
+        <span
+          nz-icon
+          nzType="setting"
+          nzTheme="outline"
+          style="font-size: 24px; margin-right: 10px"
+        ></span>
+        <span
+          nz-icon
+          nzType="bell"
+          nzTheme="outline"
+          style="font-size: 24px; margin-right: 10px"
+        ></span>
+        <a nz-dropdown [nzDropdownMenu]="menu">
+          <nz-avatar
+            nzGap="4"
+            nzText="Majid"
+            nzSize="large"
+            style="vertical-align: middle"
+          ></nz-avatar>
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu nzSelectable>
+            <li nz-menu-item>Profile</li>
+            <li nz-menu-item>Settings</li>
+            <li nz-menu-item>Log Out</li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
+    </div>
+  </div>
+</nz-header>
+<nz-layout class="app-layout">
+  <nz-sider nzCollapsible class="menu-sidebar" nzWidth="256px" style="margin-top: 5px;">
+    <ul nz-menu nzMode="inline" nzTheme="light">
       <li nz-menu-item>
         <span nz-icon nzType="pie-chart"></span>
-        <span>DashBoard</span>
+        <span routerLink="/dashboard">DashBoard</span>
       </li>
       <li nz-menu-item>
         <span nz-icon nzType="desktop"></span>
         <span routerLink="/search">Search</span>
       </li>
-      <li nz-submenu nzTitle="User" nzIcon="user">
+      <li nz-submenu nzTitle="Basic Form" nzIcon="form">
         <ul>
-          <li nz-menu-item>Tom</li>
-          <li nz-menu-item>Bill</li>
-          <li nz-menu-item>Alex</li>
+          <li nz-menu-item>Form</li>
+          <li nz-menu-item routerLink="/register">Register</li>
+          <li nz-menu-item routerLink="/login">Login</li>
         </ul>
       </li>
-      <li nz-submenu nzTitle="Team" nzIcon="team">
-        <ul>
-          <li nz-menu-item>Team 1</li>
-          <li nz-menu-item>Team 2</li>
-        </ul>
-      </li>
+      
       <li nz-menu-item>
         <span nz-icon nzType="file"></span>
-        <span>File</span>
+        <span>Other</span>
       </li>
     </ul>
   </nz-sider>
   <nz-layout>
-    <nz-header></nz-header>
     <nz-content>
       <nz-breadcrumb>
         <nz-breadcrumb-item>Layout</nz-breadcrumb-item>

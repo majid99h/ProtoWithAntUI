@@ -12,11 +12,11 @@ import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
-import { SearchComponent } from './search/search.component';
-import { HomeComponent } from './home/home.component';
-import { MasterSetupComponent } from './master-setup/master-setup.component';
-import { MasterSetup1Component } from './master-setup1/master-setup1.component';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SearchComponent } from './search/search.component';
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };
@@ -24,14 +24,14 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent,
-    HomeComponent,
-    MasterSetupComponent,
-    MasterSetup1Component
-  ],
+    LoginComponent,
+    RegisterComponent,
+    DashboardComponent,
+    SearchComponent],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     HttpClientJsonpModule,
     AppRoutingModule,
